@@ -195,7 +195,7 @@ int fs_mgr_do_format(const FstabEntry& entry) {
     LERROR << __FUNCTION__ << ": Format " << entry.blk_device << " as '" << entry.fs_type << "'";
 
     bool needs_casefold = false;
-    bool needs_projid = true;
+    bool needs_projid = android::base::GetBoolProperty("ro.vold.projid_quotas", true);
 
     if (entry.mount_point == "/data") {
         needs_casefold = android::base::GetBoolProperty("external_storage.casefold.enabled", false);
